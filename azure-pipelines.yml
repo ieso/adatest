@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Agent VM image name
-  vmImageName: "ubuntu-18.04"
+  vmImageName: "ubuntu-20.04"
 
   # Lab python repository name
   labPythonFeedName: ieso-lab
