@@ -8,6 +8,8 @@ import os
 import adatest
 from .embedders import cos_sim
 import urllib
+import json
+import requests
 
 try:
     import clip
@@ -138,7 +140,8 @@ class TextCompletionGenerator(Generator):
                 suggestion_text = self.filter(suggestion_text)
             prompt_ind = i // num_samples
             # prompt = prompts[prompt_ind]
-            samples.append(suggestion_text)
+            suggestions = suggestion_text.split(self.quote+self.sep+self.quote)
+            samples.extend(suggestions)
             # suggestion = suggestion_text.split(self.quote+self.subsep+self.quote)
             # # if len(self.quote) > 0: # strip any dangling quote
             # #     suggestion[-1] = suggestion[-1][:-len(self.quote)]
@@ -317,6 +320,46 @@ class OpenAI(TextCompletionGenerator):
         
         return self._parse_suggestion_texts(suggestion_texts, prompts)
 
+class NeoXAPI(TextCompletionGenerator):
+    """ Backend wrapper for a custom API that exposes GPT-NeoX.
+    """
+    def __init__(self, url, api_key, model="neox", sep="\n", subsep=" ", quote="\"", temperature=0.9, filter=profanity.censor):
+        super().__init__(model, sep, subsep, quote, filter)
+        self.gen_type = "model"
+        self.temperature = temperature
+        self.url = url
+        self.api_key = api_key
+
+    def __call__(self, prompts, topic, topic_description, mode, scorer, num_samples=1, max_length=100):
+        if len(prompts[0]) == 0:
+            raise ValueError("ValueError: Unable to generate suggestions from completely empty TestTree. Consider writing a few manual tests before generating suggestions.") 
+
+        prompts, prompt_ids = self._validate_prompts(prompts)
+        # prompt_strings = self._create_prompt_strings(prompts, topic)
+
+        # find out which values in the prompt have multiple values and so should be generated
+        topics_vary = self._varying_values(prompts, topic)
+
+        # create prompts to generate the model input parameters of the tests
+        prompt_strings = self._create_prompt_strings(prompts, topic, mode)
+        suggestion_texts = []
+        
+        # call the API to complete the prompts
+        for prompt in prompt_strings:
+            body = json.dumps({
+                "prompt": prompt,
+                "temperature": self.temperature,
+                "max_length": max_length
+            })
+            headers = {'Content-Type':'application/json', 
+                    'Ocp-Apim-Subscription-Key': f'{self.api_key}'}
+            response = requests.post(self.url, body, headers=headers)
+            data = response.json()
+            prompt_length = len(data["prompt"])
+            completion = data["result"][prompt_length:]
+            suggestion_texts.append(completion)
+        
+        return self._parse_suggestion_texts(suggestion_texts, prompts)
 
 class AI21(TextCompletionGenerator):
     """ Backend wrapper for the AI21 API.
