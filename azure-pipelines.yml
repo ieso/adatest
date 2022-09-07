@@ -1,0 +1,69 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - main
+
+variables:
+  # Agent VM image name
+  vmImageName: "ubuntu-18.04"
+
+  # Lab python repository name
+  labPythonFeedName: ieso-lab
+
+  # python verson
+  pythonVersion: 3.9
+
+stages:
+  - stage: Package
+    jobs:
+      - job: Package
+        displayName: Package application into wheel
+        pool:
+          vmImage: $(vmImageName)
+
+        steps:
+          - task: UsePythonVersion@0
+            displayName: "Use Python $(pythonVersion)"
+            inputs:
+              versionSpec: $(pythonVersion)
+              architecture: x64
+
+          - bash: |
+              pip install setuptools wheel
+            displayName: "Install build dependencies"
+          - bash: |
+              python setup.py bdist_wheel
+            displayName: "Build application"
+          - publish: $(System.DefaultWorkingDirectory)/dist/
+            artifact: dist
+
+  - stage: Push
+    jobs:
+      - job: Push
+        displayName: Push to private repository
+        pool:
+          vmImage: $(vmImageName)
+
+        steps:
+          - task: UsePythonVersion@0
+            displayName: "Use Python $(pythonVersion)"
+            inputs:
+              versionSpec: $(pythonVersion)
+              architecture: x64
+
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifact: dist
+              path: $(System.DefaultWorkingDirectory)/dist
+
+          - task: TwineAuthenticate@1
+            inputs:
+              artifactFeed: $(labPythonFeedName)
+
+          - bash: |
+              pip install twine
+              twine upload -r $(labPythonFeedName) --config-file $(PYPIRC_PATH) ./dist/*.whl
+            displayName: Twine upload
