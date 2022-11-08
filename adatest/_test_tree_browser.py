@@ -146,7 +146,10 @@ class TestTreeBrowser():
         if isinstance(self.scorer, dict):
             self.score_columns = [k+" score" for k in self.scorer]
             for k in self.scorer:
-                self.scorer[k] = Scorer(self.scorer[k])
+                if isinstance(self.scorer[k],Scorer):
+                    pass
+                else:
+                    self.scorer[k] = Scorer(self.scorer[k])
         elif self.scorer is not None:
             self.score_columns = ["model score"]
             self.scorer = {"model": Scorer(self.scorer)}

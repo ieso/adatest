@@ -1,0 +1,50 @@
+,topic,input,output,label,labeler,description,model score,author
+06f99f2403c945288cab518c1112749f,,It,I agree,fail,anonymous,,0.0,anonymous
+11100f1c791f4621b6438911aa75113a,/Threshold%20related,,,topic_marker,anonymous,,,
+132aac352e304857a5f4cfa643a78c57,,I can't agree,unclassifiable,pass,anonymous,,,
+15671ed42c1548fbae6c50aafe5c51bf,,we can't allow that,I don't agree,pass,anonymous,,0.0,anonymous
+19cb2822539b46d0935c5a4487ff5648,,I am not sure,I'm not sure,pass,anonymous,,0.0,
+2a3355cc8db548ff8b695efe1f0d0d5e,,I hate this idea,I don't agree,pass,anonymous,,0.0,anonymous
+2e0c6d1c75904407b43f6b0cd65205bd,,this is cool,I agree,pass,anonymous,,0.0,anonymous
+31d022e94e5a43ef97b3228e6e360cce,,You can't do that,I don't agree,pass,anonymous,,0.0,anonymous
+37d1465ed3504fcb84cec40a68428f6f,,this is a nice idea.,I agree,pass,anonymous,,0.0,anonymous
+3ba3a93a1c8543238e872900511b7f00,,Let's do it!,I agree,pass,anonymous,,0.0,anonymous
+4015e7a5fa9c40b7a26fcc74910f4cb0,,that's not okay,I don't agree,pass,anonymous,,0.0,anonymous
+4900d11e6c0349f59bdeaaec5d3267ec,/Greetings,happy monday,I agree,fail,anonymous,,1.0,anonymous
+49681e23c14049ecbdce76d4b9cae76d,,What do you think?,I'm not sure,pass,anonymous,,0.0,anonymous
+4b18b70caaa040119bfc4ba2a35dc6dd,,That's true.,I agree,pass,anonymous,,0.0,anonymous
+4eee1427907b4733a6b8cc3db354a16e,,I'll see what I can do,I'm not sure,pass,anonymous,,0.0,anonymous
+575e6715a955497c9abdeb2e1481a2bc,/Greetings,Happy Friday,I agree,fail,anonymous,,1.0,anonymous
+5b260a02ae9547d6b3d44c95e2443460,,I think there is another way of doing,unclassifiable,pass,anonymous,,,
+600c5a59c94746f883815526adbe95a2,/Greetings,happy birthday,I agree,fail,anonymous,,1.0,anonymous
+6cff281e08944814b5f8c1aeafa1e6fb,/Greetings,I don't agree,unclassifiable,fail,anonymous,,0.0,anonymous
+6f567e3b623c40a9bbb0846f1183f605,,I can't agree with you.,I don't agree,pass,anonymous,,0.0,anonymous
+7728b4e536684a58aac466d20055195f,,I am glad you like Fridays,I agree,fail,anonymous,,0.0,anonymous
+784d7c8cd2954e52965d03a6c28574f0,,I agree.,I agree,pass,anonymous,,0.0,anonymous
+80f7265ab98845f6854b9b8999551ab8,,I can't agree with you,I don't agree,pass,anonymous,,0.0,anonymous
+814bc87ac8174e23abbc7e20c34f364b,,,,topic_marker,imputed,,,
+83602bf129544198b53a76d790668ef2,/Greetings,I disagree,unclassifiable,fail,anonymous,,0.0,anonymous
+841690c9d7a14e34adc71ccf20430518,,I would not do it,I don't agree,pass,anonymous,,0.0,anonymous
+93d6b2537eb74f2baab1c25e338d1d0a,,I can't agree with you there,I don't agree,pass,anonymous,,0.0,anonymous
+9531615d7d314f8dbeea24df2f601a99,,I don't think so,unclassifiable,pass,anonymous,,,
+9cadb77ddd0b4185b92d3169bb7c52bf,,this is a lovely idea.,I agree,pass,anonymous,,,
+a3c2f4c4258e41aa9c8515609439a86f,/Greetings,Good night too,I agree,fail,anonymous,,1.0,anonymous
+b14966f786974ed8b843298abf39e9b2,/Greetings,Goodnight,I agree,fail,anonymous,,1.0,anonymous
+b3bbcd27dc75454890d4f671e0b23d0d,/Greetings,Good morning,I agree,fail,anonymous,,1.0,anonymous
+b42b628967d84dbbb19115f2257994f0,,I like this idea,I agree,pass,anonymous,,0.0,anonymous
+b51409b1147a48bc83fcbfde4a238a30,/Greetings,Good afternoon,I agree,fail,anonymous,,1.0,anonymous
+b6613e4e13b3484bb8f37b03d8be25a1,/Greetings,Good evening,I agree,fail,anonymous,,1.0,anonymous
+c0650d65e22f4537980032e1ad4a953d,,I can't agree more,I agree,pass,anonymous,,,
+c84f7a39ac25449c909aff4ab9955533,/Greetings,nice to meet you,I agree,fail,anonymous,,0.0,anonymous
+c947df8c397d4c4a99459eb0cfa86d45,,happy friday,I agree,fail,anonymous,,,
+cdecae4d4aed44c498ce1bb2fd7633be,/Greetings,Happy New Year!,I agree,fail,anonymous,,1.0,anonymous
+d45f09ea40ac41529ac9378331f964cc,/Greetings,What's up,unclassifiable,pass,anonymous,,1.0,anonymous
+e85a8aed3bf444beb9ea5aa8739cf2f8,,I think that's a good idea,I agree,pass,anonymous,,0.0,anonymous
+eb48231e2d09483ba4df6f120e2ccdc2,,Not cool anymore,I don't agree,pass,anonymous,,0.0,anonymous
+eedddc3d4d1e43689f1da45a71454e85,/Greetings,Have a good night,unclassifiable,pass,anonymous,,1.0,anonymous
+ef955f593b254cd18a32ada8b8a4ea5f,/Greetings,,,topic_marker,anonymous,,,
+fa50a15a86034b9b8013041313ba4c1b,,I think that's a very good idea,I agree,pass,anonymous,,0.0,anonymous
+fb4313059ed5478ca6948f6b59b661fa,,not a good idea,I don't agree,pass,anonymous,,0.0,anonymous
+fd14acd1b30f443d92fb262a99970952,/Threshold%20related,Not so sure about that,unclassifiable,fail,anonymous,,0.0,anonymous
+feec494eb6fa46c294e9ca2ad20a67a0,/Greetings,Good night,unclassifiable,pass,anonymous,,1.0,anonymous
+eebede256b6e4b539a56e7ee3784fb00,,"Oh, no, it does not work that way",I don't agree,pass,anonymous,,0.0,anonymous

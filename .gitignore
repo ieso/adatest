@@ -20,3 +20,4 @@ local_data
 /test_trees/local
 /adatest/utils/local
 /tests/local
+scp*.py
