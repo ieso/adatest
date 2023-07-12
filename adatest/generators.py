@@ -362,7 +362,7 @@ class AzureOpenAI(TextCompletionGenerator):
         
         # call the OpenAI API to complete the prompts
         response = openai.Completion.create(
-                                        engine="lab-gpt-35-turbo",
+                                        engine="tristan-gpt-35-turbo",
                                         prompt=prompt_strings,
                                         temperature=1,
                                         max_tokens=100,
