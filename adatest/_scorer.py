@@ -400,7 +400,7 @@ class EntailmentScorer(Scorer):
         if not callable(self.output_names):
             self._output_name_to_index = {v: i for i, v in enumerate(self.output_names)}
         self.top_probs = top_probs
-        print(self.output_names)
+        #print(self.output_names)
         self.model.output_names = self.output_names
 
     def __call__(self, tests, eval_ids):

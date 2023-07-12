@@ -320,6 +320,60 @@ class OpenAI(TextCompletionGenerator):
         
         return self._parse_suggestion_texts(suggestion_texts, prompts)
 
+class AzureOpenAI(TextCompletionGenerator):
+    """ Backend wrapper for the OpenAI API that exposes GPT-3.
+    """
+    
+    def __init__(self, model="curie", api_key=None, sep="\n", subsep=" ", quote="\"", temperature=1.0, top_p=0.95, filter=profanity.censor):
+        import openai
+
+        # TODO [Harsha]: Add validation logic to make sure model is of supported type.
+        super().__init__(model, sep, subsep, quote, filter)
+        self.gen_type = "model"
+        self.temperature = temperature
+        self.top_p = top_p
+        openai.api_type = "azure"
+        openai.api_base = "https://lab-gpt.openai.azure.com/"
+        openai.api_version = "2022-12-01"
+        if api_key is not None:
+            openai.api_key = api_key
+
+        # load a key by default if a standard file exists
+        elif openai.api_key is None:
+            key_path = os.path.expanduser("~/.openai_api_key")
+            if os.path.exists(key_path):
+                with open(key_path) as f:
+                    openai.api_key = f.read().strip()
+
+    def __call__(self, prompts, topic, topic_description, mode, scorer, num_samples=1, max_length=100):
+        import openai
+
+        if len(prompts[0]) == 0:
+            raise ValueError("ValueError: Unable to generate suggestions from completely empty TestTree. Consider writing a few manual tests before generating suggestions.") 
+
+        prompts, prompt_ids = self._validate_prompts(prompts)
+        # prompt_strings = self._create_prompt_strings(prompts, topic)
+
+        # find out which values in the prompt have multiple values and so should be generated
+        topics_vary = self._varying_values(prompts, topic)
+
+        # create prompts to generate the model input parameters of the tests
+        prompt_strings = self._create_prompt_strings(prompts, topic, mode)
+        
+        # call the OpenAI API to complete the prompts
+        response = openai.Completion.create(
+                                        engine="lab-gpt-35-turbo",
+                                        prompt=prompt_strings,
+                                        temperature=1,
+                                        max_tokens=100,
+                                        top_p=0.5,
+                                        frequency_penalty=0,
+                                        presence_penalty=0,
+                                        stop=None)
+        suggestion_texts = [choice["text"] for choice in response["choices"]]
+        
+        return self._parse_suggestion_texts(suggestion_texts, prompts)
+
 class NeoXAPI(TextCompletionGenerator):
     """ Backend wrapper for a custom API that exposes GPT-NeoX.
     """
