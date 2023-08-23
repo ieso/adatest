@@ -23,3 +23,4 @@ local_data
 scp*.py
 converted.csv
 adversarial_testing.csv
+adversarial_testing_formatted.csv
