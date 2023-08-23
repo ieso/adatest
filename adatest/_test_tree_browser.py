@@ -437,6 +437,7 @@ class TestTreeBrowser():
                     sendback_data[msg[k]["value"]] = template_value
 
                 # update the row and recompute scores
+                msg[k]["query"] = self.query
                 for k2 in msg[k]:
                     self.test_tree.loc[k, k2] = msg[k][k2]
                 if "input" in msg[k] or "output" in msg[k]:
