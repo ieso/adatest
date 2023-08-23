@@ -31,7 +31,7 @@ labels = ["pass", "fail", "Unknown" "topic_marker"]
 duplicate_checker = []
 
 with open("adversarial_testing.csv") as csvfile:
-    with open("converted.csv", "w") as csvConv:
+    with open("adversarial_testing_formatted.csv", "w") as csvConv:
         reader = csv.reader(csvfile, delimiter=",")
         writer = csv.writer(csvConv, delimiter=",", lineterminator="\n")
 
@@ -44,7 +44,14 @@ with open("adversarial_testing.csv") as csvfile:
                 patient_input = row[7]
                 machine_input = row[2].strip()
 
-            if row[4] == "Unknown" or row[4] == "topic_marker" or not row[3] or machine_input in duplicate_checker:
+            if (
+                row[4] == "Unknown"
+                or row[4] == "topic_marker"
+                or not row[3]
+                or machine_input in duplicate_checker
+                or "bin" in row[1]
+                or "ignore" in row[6] # just put ignore in topic description to not count towards dataset
+            ):
                 continue
 
             if row[4] == "pass":
