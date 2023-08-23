@@ -20,7 +20,7 @@ query
 
 patient_input
 machine_input
-label
+true_label
 
 """
 
@@ -32,6 +32,10 @@ with open("adversarial_testing.csv") as csvfile:
         writer = csv.writer(csvConv, delimiter=",", lineterminator="\n")
 
         for i, row in enumerate(reader):
+            if i == 0:
+                row[7] = "patient_input"
+                row[2] = "machine_input"
+                row[4] = "true_label"
             if row[4] == "Unknown" or row[4] == "topic_marker":
                 continue
             if row[4] == "pass":
