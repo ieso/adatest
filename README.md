@@ -6,6 +6,8 @@ AdaTest uses language models against themselves to build suites of unit tests. I
   <smaller><i>Note, AdaTest is currently a beta release so please share any issues you encounter.</i></smaller>
 </p>
 
+## (Internal - Ieso Use) when sharing exported csv for re-training, use the `csv_reformatter.py` script to make it easier to parse the data needed
+
 ## Install
 
 ```

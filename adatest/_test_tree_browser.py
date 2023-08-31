@@ -89,7 +89,7 @@ class TestTreeBrowser():
 
     def __init__(self, test_tree, scorer, generators, user, auto_save, recompute_scores, drop_inactive_score_columns,
                  max_suggestions, suggestion_thread_budget, prompt_builder, active_generator, starting_path,
-                 score_filter, topic_model_scale):
+                 score_filter, topic_model_scale, query):
         """ Initialize the TestTreeBrowser.
         
         See the __call__ method of TreeBrowser for parameter documentation.
@@ -110,6 +110,7 @@ class TestTreeBrowser():
         self.score_filter = score_filter
         self.topic_model_scale = topic_model_scale
         self.filter_text = ""
+        self.query = query
 
         # convert single generator to the multi-generator format
         if not isinstance(self.generators, dict):
@@ -372,7 +373,8 @@ class TestTreeBrowser():
                         "output": "",
                         "label": "",
                         "labeler": "imputed",
-                        "description": ""
+                        "description": "",
+                        "query": self.query
                     }
                     for c in self.score_columns:
                         row[c] = np.nan
@@ -435,6 +437,7 @@ class TestTreeBrowser():
                     sendback_data[msg[k]["value"]] = template_value
 
                 # update the row and recompute scores
+                msg[k]["query"] = self.query
                 for k2 in msg[k]:
                     self.test_tree.loc[k, k2] = msg[k][k2]
                 if "input" in msg[k] or "output" in msg[k]:

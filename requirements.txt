@@ -15,3 +15,5 @@ profanity
 Pillow
 appdirs
 diskcache
+clip
+clip_retrieval

@@ -21,3 +21,5 @@ local_data
 /adatest/utils/local
 /tests/local
 scp*.py
+converted.csv
+adversarial_testing*.csv
