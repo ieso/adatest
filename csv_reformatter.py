@@ -30,6 +30,12 @@ labels = ["pass", "fail", "Unknown" "topic_marker"]
 
 duplicate_checker = []
 
+# with open("adversarial_testing_formatted_v1.csv") as csvfile:
+#     reader = csv.reader(csvfile, delimiter=",")
+#     for row in reader:
+#         duplicate_checker.append(row[1])
+
+
 with open("adversarial_testing.csv") as csvfile:
     with open("adversarial_testing_formatted.csv", "w") as csvConv:
         reader = csv.reader(csvfile, delimiter=",")
